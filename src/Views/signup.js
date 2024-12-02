@@ -12,7 +12,10 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [role, setRole] = useState("Student"); // New state for role selection
-  const handleClick = async (e) => {};
+
+  const handleClick = () => {
+    navigate("/login");
+  };
 
   return (
     <div className="LoginTab">
@@ -41,8 +44,8 @@ const Signup = () => {
       <input
         type="text"
         className="CenteredInputField"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
         placeholder="Email"
       />
       <input
@@ -55,8 +58,8 @@ const Signup = () => {
       <input
         type="password"
         className="CenteredInputField"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        value={confirmPassword}
+        onChange={(e) => setConfirmPassword(e.target.value)}
         placeholder="Confirm Password"
       />
 
@@ -72,6 +75,9 @@ const Signup = () => {
       <button onClick={handleClick} className="SignUpButton">
         Sign up
       </button>
+      <p onClick={handleClick} className="signup-text">
+        Have an account? Click here
+      </p>
     </div>
   );
 };

@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 import "./styles.css";
+import { useNavigate } from "react-router-dom";
 
 const Aboutus = () => {
-  const handleClick = () => {};
+  const navigate = useNavigate()
+  const handleHome = () => {
+    navigate("/home")
+  };
+
+  const handleGoBack = () => {
+    navigate(-1)
+  };
   return (
     <div className="Aboutus">
       <h2>About Us</h2>
@@ -59,8 +67,8 @@ const Aboutus = () => {
         </div>
       </div>
       <div className="button_container">
-        <button className="HomeButton">Home</button>
-        <button className="GobackButton">Go back</button>
+        <button className="HomeButton" onClick={handleHome}>Home</button>
+        <button className="GobackButton" onClick={handleGoBack}>Go back</button>
       </div>
     </div>
   );
