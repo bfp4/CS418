@@ -1,0 +1,222 @@
+.App {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(217, 217, 217);
+  height: 100vh;
+}
+
+/* Login.js */
+
+.LoginTab {
+  display: flex;
+  flex-direction: column;
+  padding: 100px;
+  margin: 100px;
+  justify-content: center;
+  border-radius: 25px;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.CenteredInputField {
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 10px;
+  resize: none;
+}
+
+.LoginButton {
+  padding: 10px;
+  width: 188px;
+  border-radius: 10px;
+  margin-top: 10px;
+  background-color: #dd33d0;
+  background-image: linear-gradient(
+    157deg,
+    #dd33d0 29%,
+    #9100db 98%,
+    #4158d0 100%
+  );
+
+  color: white;
+}
+
+.LoginButton:hover {
+  transform: scale(1.03);
+  background-color: #f1fb7e;
+  background-image: linear-gradient(
+    315deg,
+    #f1fb7e 0%,
+    #ffaf00 24%,
+    #fff200 100%
+  );
+}
+
+/* Singup.js */
+
+.SignUpButton {
+  padding: 10px;
+  width: 188px;
+  border-radius: 10px;
+  margin-top: 10px;
+  background-color: #dd33d0;
+  background-image: linear-gradient(
+    157deg,
+    #dd33d0 29%,
+    #9100db 98%,
+    #4158d0 100%
+  );
+
+  color: white;
+}
+
+.SignUpButton:hover {
+  transform: scale(1.03);
+  background-color: #f1fb7e;
+  background-image: linear-gradient(
+    315deg,
+    #f1fb7e 0%,
+    #ffaf00 24%,
+    #fff200 100%
+  );
+}
+.signup-text {
+  color: rgb(158, 158, 158);
+}
+
+/* adminhomepage.js */
+
+.adminHome {
+  display: flex;
+  flex-direction: column;
+  padding: 100px;
+  margin: 100px;
+  justify-content: center;
+  border-radius: 25px;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.AboutButton {
+  padding: 10px;
+  width: 188px;
+  border-radius: 10px;
+  margin-top: 10px;
+  background-color: #dd33d0;
+  background-image: linear-gradient(
+    157deg,
+    #dd33d0 29%,
+    #9100db 98%,
+    #4158d0 100%
+  );
+
+  color: white;
+}
+
+.AboutButton:hover {
+  transform: scale(1.03);
+  background-color: #f1fb7e;
+  background-image: linear-gradient(
+    315deg,
+    #f1fb7e 0%,
+    #ffaf00 24%,
+    #fff200 100%
+  );
+}
+
+.TopicsButton {
+  padding: 10px;
+  width: 188px;
+  border-radius: 10px;
+  margin-top: 10px;
+  background-color: #dd33d0;
+  background-image: linear-gradient(
+    157deg,
+    #dd33d0 29%,
+    #9100db 98%,
+    #4158d0 100%
+  );
+
+  color: white;
+}
+
+.TopicsButton:hover {
+  transform: scale(1.03);
+  background-color: #f1fb7e;
+  background-image: linear-gradient(
+    315deg,
+    #f1fb7e 0%,
+    #ffaf00 24%,
+    #fff200 100%
+  );
+}
+
+.LogoutButton {
+  padding: 10px;
+  width: 188px;
+  border-radius: 10px;
+  margin-top: 10px;
+  background-color: #dd33d0;
+  background-image: linear-gradient(
+    157deg,
+    #dd33d0 29%,
+    #9100db 98%,
+    #4158d0 100%
+  );
+
+  color: white;
+}
+
+.LogoutButton:hover {
+  transform: scale(1.03);
+  background-color: #f1fb7e;
+  background-image: linear-gradient(
+    315deg,
+    #f1fb7e 0%,
+    #ffaf00 24%,
+    #fff200 100%
+  );
+}
+
+/* faculty_homepage.js */
+
+.facultyHome {
+  display: flex;
+  flex-direction: column;
+  padding: 100px;
+  margin: 100px;
+  justify-content: center;
+  border-radius: 25px;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.FacultyViewTopicsButton {
+  padding: 10px;
+  width: 188px;
+  border-radius: 10px;
+  margin-top: 10px;
+  background-color: #dd33d0;
+  background-image: linear-gradient(
+    157deg,
+    #dd33d0 29%,
+    #9100db 98%,
+    #4158d0 100%
+  );
+
+  color: white;
+}
+
+.FacultyViewTopicsButton:hover {
+  transform: scale(1.03);
+  background-color: #f1fb7e;
+  background-image: linear-gradient(
+    315deg,
+    #f1fb7e 0%,
+    #ffaf00 24%,
+    #fff200 100%
+  );
+}
