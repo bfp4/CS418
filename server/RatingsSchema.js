@@ -6,14 +6,14 @@ const RatingsSchema = new mongoose.Schema({
     rating: {
       type: Number,
       required: true,
-      min: [0, 'Score can't be less than 0'],
-      max: [5, 'Score can't be greater than 5'],
+      min: [0, "Score can't be less than 0"],
+      max: [5, "Score can't be greater than 5"],
     },
     comments: {
       type: String,
       required: true,
       maxlength: 800,
-    }
+    },
     image_id: Number
 });
 
