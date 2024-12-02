@@ -1,12 +1,13 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import cors from 'cors';
-import bodyParser from 'body-parser';
-import Project from './ProjectsSchema.js';
-import Team from './TeamSchema.js';
-import User from './UserSchema.js';
-import UserStory from './UserStorySchema.js';
-import AssignedStoriesSchema from './AssignedStoriesSchema.js';  // Adjust the path if necessary
+// import express from 'express';
+// import mongoose from 'mongoose';
+// import cors from 'cors';
+// import bodyParser from 'body-parser';
+// import { User } from "./UserSchema"
+const express = require("express")
+const mongoose = require("mongoose")
+const cors = require("cors")
+const bodyParser = require("body-parser")
+const User = require("./UserSchema")
 
 const app = express();
 
@@ -37,17 +38,17 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 
 // Signup Route
 app.post('/signup', async (req, res) => {
-    const {firstName, lastName, email, userName, password, type } = req.body;
+    const {firstName, lastName, email, username, password, role } = req.body;
 
     try {
         // Check if username already exists using Mongoose
-        const existingUser = await User.findOne({ userName });
+        const existingUser = await User.findOne({ username });
         if (existingUser) {
             return res.status(400).json({ message: 'Username already exists' });
         }
 
         // Insert a new user
-        const newUser = new User({ firstName, lastName, email, userName, password, type });
+        const newUser = new User({ firstName, lastName, email, username, password, role });
         await newUser.save(); // Save using Mongoose
         return res.status(201).json({ message: 'New user successfully created' });
     } catch (error) {
@@ -58,10 +59,10 @@ app.post('/signup', async (req, res) => {
 
 // Login Route
 app.get('/login', async (req, res) => {
-    const { userName, password} = req.query;
+    const { username, password} = req.query;
 
     try {
-        const user = await User.findOne({ userName, password });
+        const user = await User.findOne({ username, password });
         if (user) {
             return res.status(200).json({ message: 'Login successful!', _id: user._id });
         } else {
@@ -78,7 +79,10 @@ app.post('/createRating', async (req, res) => {
     try {
         const rating = new Rating(req.body);
         await project
+    }catch (error) {
+        res.status(500).json({ error: "Failed to create rating", details: error.message });
     }
+    
 })
 
 

@@ -14,7 +14,17 @@ const Signup = () => {
   const [role, setRole] = useState("Student"); // New state for role selection
 
   const handleClick = () => {
-    navigate("/login");
+    const signupValues = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      username: username,
+      password: password,
+      role: role
+    }
+    axios.post("http://localhost:5001/signup", signupValues)
+      .then(res => navigate("/login"))
+      .catch(err => alert("Error on Sign up."))
   };
 
   return (
