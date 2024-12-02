@@ -12,8 +12,8 @@ import Aboutus from "./about_us.js";
 import Adminview from "./admin_view.js";
 import Studentview from "./student_view.js";
 import Facultyview from "./faculty_view.js";
-import addTopic from "./add_topic.js";
-
+import AddTopic from "./add_topic.js";
+import AdminEachTopic from "./admin_each_topic.js"; // Updated the name to PascalCase
 function App() {
   return (
     <div className="App">
@@ -28,8 +28,7 @@ function App() {
           <Route path="/Adminview" element={<Adminview />} />
           <Route path="/Studentview" element={<Studentview />} />
           <Route path="/Facultyview" element={<Facultyview />} />
-
-          <Route path="/addTopic" element={<addTopic />} />
+          <Route path="/AdminEachTopic" element={<AdminEachTopic />} />
         </Routes>
       </BrowserRouter>
     </div>

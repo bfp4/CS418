@@ -495,3 +495,154 @@ h2 {
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
+
+/* add_topic.js */
+.AddButton {
+  padding: 10px;
+  width: 188px;
+  border-radius: 10px;
+  margin-top: 10px;
+  background-color: #dd33d0;
+  background-image: linear-gradient(
+    157deg,
+    #dd33d0 29%,
+    #9100db 98%,
+    #4158d0 100%
+  );
+
+  color: white;
+}
+
+.AddButton:hover {
+  transform: scale(1.03);
+  background-color: #f1fb7e;
+  background-image: linear-gradient(
+    315deg,
+    #f1fb7e 0%,
+    #ffaf00 24%,
+    #fff200 100%
+  );
+}
+
+.LoginTab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+  margin: 50px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column; /* Ensures that the form inputs are aligned in a column */
+  gap: 20px; /* Adds space between the form elements */
+  width: 100%; /* Make sure it takes up full width available */
+}
+
+.CenteredInputField {
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 10px;
+  resize: none;
+  width: 100%; /* Make inputs full width */
+}
+
+.GobackButton {
+  padding: 10px;
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 10px;
+  background-color: #dd33d0;
+  background-image: linear-gradient(
+    157deg,
+    #dd33d0 29%,
+    #9100db 98%,
+    #4158d0 100%
+  );
+  color: white;
+}
+
+.GobackButton:hover {
+  transform: scale(1.03);
+  background-color: #f1fb7e;
+  background-image: linear-gradient(
+    315deg,
+    #f1fb7e 0%,
+    #ffaf00 24%,
+    #fff200 100%
+  );
+}
+
+.adminEachTopic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+  margin: 50px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+
+  overflow-y: auto; /* Enable scrolling for the reviews list */
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: 2rem;
+  color: #333;
+}
+
+h4 {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.topic-image {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  margin: 10px 0;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  resize: vertical;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #dd33d0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #9100db;
+}
+
+button.DeleteButton {
+  background-color: red;
+}
+
+button.DeleteButton:hover {
+  background-color: darkred;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+  max-height: 300px;
+  overflow-y: auto; /* Enable scrolling for the reviews list */
+}
