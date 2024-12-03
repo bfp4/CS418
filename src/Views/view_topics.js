@@ -24,7 +24,7 @@ const ViewTopics = () => {
     };
   
     const handleGoBack = () => {
-      navigate(-1)
+      navigate("/Home")
     };
 
     const handleReview = () => {
@@ -61,4 +61,3 @@ const ViewTopics = () => {
 }
 
 export default ViewTopics;
-
