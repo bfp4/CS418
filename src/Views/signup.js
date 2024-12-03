@@ -27,6 +27,10 @@ const Signup = () => {
       .catch(err => alert("Error on Sign up."))
   };
 
+  const handleLogin = () => {
+    navigate("/login")
+  }
+
   return (
     <div className="LoginTab">
       <h2>Sign Up</h2>
@@ -85,7 +89,7 @@ const Signup = () => {
       <button onClick={handleClick} className="SignUpButton">
         Sign up
       </button>
-      <p onClick={handleClick} className="signup-text">
+      <p onClick={handleLogin} className="signup-text">
         Have an account? Click here
       </p>
     </div>

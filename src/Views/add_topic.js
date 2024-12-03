@@ -4,41 +4,22 @@ import "./styles.css";
 import { useNavigate } from "react-router-dom";
 
 const AddTopic = () => {
+  const navigate = useNavigate()
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
-  const [image, setImage] = useState(null); // To store the uploaded image
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0]; // Get the first selected file
-    if (file) {
-      setImage(file); // Update the image state
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("description", description);
-    formData.append("category", category);
-    if (image) {
-      formData.append("image", image); // Add image to form data if available
+  const handleSubmit = () => {
+    const topicValues = {
+      title: title,
+      description: description,
+      category: category,
+      approved: false
     }
 
-    try {
-      // Make an API call to submit the form data
-      const response = await axios.post("/your-api-endpoint", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      console.log(response.data);
-      // Navigate or show success message
-    } catch (error) {
-      console.error("Error uploading topic:", error);
-    }
+    axios.post("http://localhost:5001/addTopic", topicValues)
+      .then(res => navigate("/home"))
+      .catch(err => alert("Error on adding."))
   };
 
   return (
@@ -59,21 +40,14 @@ const AddTopic = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        <input
-          type="text"
+        <select
           className="CenteredInputField"
-          placeholder="Category of establishment"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-        />
-
-        {/* Image Upload */}
-        <input
-          type="file"
-          className="CenteredInputField"
-          accept="image/*" // Restrict file type to images
-          onChange={handleImageChange}
-        />
+        >
+          <option value="Example1">Example1</option>
+          <option value="Example2">Example2</option>
+        </select>
 
         <div className="button_container">
           <button type="submit" className="AddButton">
