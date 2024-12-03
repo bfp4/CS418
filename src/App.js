@@ -9,6 +9,7 @@ import Aboutus from "./Views/about_us.js";
 import ViewTopics from "./Views/view_topics.js";
 import AddTopic from "./Views/add_topic.js";
 import EachTopic from "./Views/each_topic.js"; // Updated the name to PascalCase
+import ReviewTopics from "./Views/review_topic.js";
 function App() {
   return (
     <div className="App">
@@ -21,6 +22,7 @@ function App() {
           <Route path="/ViewTopics" element={<ViewTopics />} />
           <Route path="/EachTopic" element={<EachTopic />} />
           <Route path="/AddTopic" element={<AddTopic />} />
+          <Route path="/ReviewTopics" element={<ReviewTopics />} />
         </Routes>
       </BrowserRouter>
     </div>
