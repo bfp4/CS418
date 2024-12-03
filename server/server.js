@@ -100,6 +100,27 @@ app.get('/getTopics', async (req, res) => {
     }
 });
 
+app.post('approveTopic', async (req, res) => {
+    const { userStoryId } = req.params;
+    const { user_story, priority } = req.body;
+    try {
+        const updatedUserStory = await UserStory.findByIdAndUpdate(
+            userStoryId,
+            { user_story, priority },
+            { new: true }
+        );
+        if (!updatedUserStory) {
+            return res.status(404).json({ message: 'User story not found' });
+        }
+        res.status(200).json({ message: 'User story updated successfully', updatedUserStory });
+        // const topics = await Topic.find({}, {title:1, description:1, category:1}) // Populate member details
+        // res.send(topics);
+    } catch (error) {
+        console.error('Error retrieving topics:', error);
+        res.status(500).send(error);
+    }
+})
+
 // Create Rating Route
 app.post('/createRating', async (req, res) => {
     try {

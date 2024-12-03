@@ -10,17 +10,16 @@ const ReviewTopics = () => {
   useEffect(() => {
     axios.get('http://localhost:5001/getTopics')
     .then(function (response) {
-      console.log(response)
+      setTopics(response.data)
     })
     .catch(function (error) {
       console.log(error);
     });
-}, []);
+  }, []);
 
-  //   needs implementation
-  const handleAddTopic = () => {
-    navigate("/AddTopic");
-  };
+  const handleApproval = approval => {
+
+  }
 
   const handleGoBack = () => {
     navigate(-1);
@@ -32,12 +31,14 @@ const ReviewTopics = () => {
       <div className="topics-container">
         {topics.map((topic, index) => (
           <div key={index} className="topic">
-            <h3>{topic}</h3>
+            <h3>{topic.title}</h3>
+            <h5>{topic.category}</h5>
+            <p>{topic.description}</p>
             <div className="btn_container">
-              <button className="reviewTopicButton" onClick={handleGoBack}>
+              <button className="reviewTopicButton" onClick={() => handleApproval(true)}>
                 Approve
               </button>
-              <button className="denyTopicButton" onClick={handleGoBack}>
+              <button className="denyTopicButton" onClick={() => handleApproval(false)}>
                 Deny
               </button>
             </div>
