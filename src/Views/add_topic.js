@@ -16,8 +16,9 @@ const AddTopic = () => {
     setCategory("");
   };
 
-
-
+  const handleGoBack = () => {
+    navigate("/ViewTopics")
+  };
 
   const handleSubmit = () => {
     
@@ -31,7 +32,7 @@ const AddTopic = () => {
     axios.post("http://localhost:5001/addTopic", topicValues)
       .then((res) => {
         resetForm(); 
-        navigate("/home"); 
+        navigate("/Home"); 
       })
       .catch((err) => alert("Error on adding."));
   };
@@ -83,7 +84,7 @@ const AddTopic = () => {
           <button type="submit" className="AddButton">
             Submit topic request
           </button>
-          <button type="button" className="GobackButton">
+          <button type="button" className="GobackButton" onClick={handleGoBack}>
             Go back
           </button>
         </div>

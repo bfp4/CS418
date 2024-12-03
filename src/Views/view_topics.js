@@ -14,7 +14,7 @@ const ViewTopics = () => {
   
     //   needs implementation
     const handleAddTopic = () => {
-      navigate("/AddTopic")
+      navigate("/Home")
     };
   
     const handleGoBack = () => {
