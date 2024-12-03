@@ -22,8 +22,8 @@ app.use(bodyParser.json());
 
 // MongoDB connection URI and client. Change the uri with your own connection string
 
-// const uri = 'mongodb+srv://collin_gebauer:ogd8q1OQBujadpqJ@418lab.pvojs.mongodb.net/UAlbanyReviews';
-const uri = "mongodb+srv://arileverton:uIjhJBm5Jw0Mb9dw@cluster0.xlpup.mongodb.net/"
+const uri = 'mongodb+srv://collin_gebauer:ogd8q1OQBujadpqJ@418lab.pvojs.mongodb.net/UAlbanyReviews';
+//const uri = "mongodb+srv://arileverton:uIjhJBm5Jw0Mb9dw@cluster0.xlpup.mongodb.net/"
 
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
