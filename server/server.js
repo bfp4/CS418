@@ -90,6 +90,18 @@ app.post('/addTopic', async (req, res) => {
     }
 })
 
+// Get Teams
+app.get('/getTopics', async (req, res) => {
+    try {
+        const topics = await Topic.find()
+            .populate('title', 'description', 'category'); // Populate member details
+        res.send(topics);
+    } catch (error) {
+        console.error('Error retrieving topics:', error);
+        res.status(500).send(error);
+    }
+});
+
 // Create Rating Route
 app.post('/createRating', async (req, res) => {
     try {
