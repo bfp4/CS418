@@ -32,7 +32,6 @@ const AddTopic = () => {
     axios.post("http://localhost:5001/addTopic", topicValues)
       .then((res) => {
         resetForm(); 
-        navigate("/Home"); 
       })
       .catch((err) => alert("Error on adding."));
   };
