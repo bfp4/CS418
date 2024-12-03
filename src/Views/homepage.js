@@ -23,7 +23,7 @@ const Admin_Homepage = () => {
       <button onClick={() => handleClick("/Aboutus")} className="AboutButton">
         About us
       </button>
-      <button onClick={handleSubmit} className="TopicsButton">
+      <button onClick={() => handleClick("/ViewTopics")} className="TopicsButton">
         View topics
       </button>
       <button onClick={(event) => handleSignOut(event)} className="LogoutButton">
