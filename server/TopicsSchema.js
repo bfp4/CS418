@@ -4,6 +4,7 @@ const TopicsSchema = new mongoose.Schema({
     title: String,
     description: String,
     category: String,
+    reviews: Array,
     approved: Boolean
 });
 

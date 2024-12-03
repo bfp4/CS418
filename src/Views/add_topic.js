@@ -21,13 +21,14 @@ const AddTopic = () => {
   };
 
 
-  const handleSubmit = () => {
+  const handleSubmit = e => {
+    e.preventDefault()
     
     const topicValues = {
       title: title,
       description: description,
       category: category,
-      approved: false
+      approved: false,
     }
 
     axios.post("http://localhost:5001/addTopic", topicValues)

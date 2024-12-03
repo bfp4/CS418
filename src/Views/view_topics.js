@@ -11,7 +11,6 @@ const ViewTopics = () => {
     useEffect(() => {
       axios.get('http://localhost:5001/getApprovedTopics')
       .then(function (response) {
-        console.log(response)
         setTopics(response.data)
       })
       .catch(function (error) {
@@ -28,9 +27,13 @@ const ViewTopics = () => {
       navigate(-1)
     };
 
-    const handleClick = id => {
-      navigate("/eachtopic")
+    const handleReview = () => {
+      navigate("/reviewTopics")
     }
+
+    const handleClick = id => {
+      navigate("/eachtopic", { state: { id } });
+    };
   
     return (
       <div className="studentview">
@@ -43,7 +46,7 @@ const ViewTopics = () => {
           ))}
         </div>
         <div className="button_container">
-          {role == "Admin" ? <button className="addtopicButton">
+          {role == "Admin" ? <button className="addtopicButton" onClick={handleReview}>
               Review New Topics
           </button>: null}
           {role == "Faculty" ? null : <button className="addtopicButton" onClick={handleAddTopic}>

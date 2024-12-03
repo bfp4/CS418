@@ -109,6 +109,17 @@ app.get('/getApprovedTopics', async (req, res) => {
     }
 });
 
+app.get('/getTopic', async (req, res) => {
+    const { id } = req.query;
+    try {
+        const topic = await Topic.findById(id);
+        res.send(topic);
+    } catch (error) {
+        console.error('Error retrieving topics:', error);
+        res.status(500).send(error);
+    }
+});
+
 
 app.post('/approveTopic', async (req, res) => {
     const { id, approval } = req.body;

@@ -1,17 +1,33 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./styles.css";
+import { useLocation } from "react-router-dom";
+import axios from "axios"
 
 const AdminEachTopic = () => {
+  const location = useLocation();
+  const { id } = location.state || {}; // Extract the passed `id`
   // Sample data for the topic
   const [topic, setTopic] = useState({
     title: "Sample Topic Title",
     category: "Sample Category",
-    image: "https://via.placeholder.com/400", // Optional image URL
     reviews: [
       { id: 1, text: "This is a great topic!" },
       { id: 2, text: "I found this topic very informative." },
     ],
   });
+
+  useEffect(() => {
+    axios
+        .get('http://localhost:5001/getTopic', { params: { id } }) // Pass `id` as query parameter
+        .then(res => {
+            console.log(res);
+            setTopic(res.data); // Use the response data to set the topic
+        })
+        .catch(error => {
+            console.error('Error fetching topic:', error);
+        });
+}, [id]);
+
 
   const [newReview, setNewReview] = useState("");
   const reviewsEndRef = useRef(null); // Reference to scroll to the end of the reviews
@@ -31,7 +47,6 @@ const AdminEachTopic = () => {
     setTopic({
       title: "",
       category: "",
-      image: "",
       reviews: [],
     });
   };
