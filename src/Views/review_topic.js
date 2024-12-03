@@ -8,8 +8,9 @@ const ReviewTopics = () => {
   const [topics, setTopics] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5001/getTopics')
+    axios.get('http://localhost:5001/getUnapprovedTopics')
     .then(function (response) {
+      console.log(response)
       setTopics(response.data)
     })
     .catch(function (error) {
@@ -17,8 +18,10 @@ const ReviewTopics = () => {
     });
   }, []);
 
-  const handleApproval = approval => {
-
+  const handleApproval = (approval, id) => {
+    axios.post('http://localhost:5001/approveTopic', {id: id, approval: approval})
+    .then(res => window.location.reload())
+    .catch((err) => alert("Error on adding."));
   }
 
   const handleGoBack = () => {
@@ -35,10 +38,10 @@ const ReviewTopics = () => {
             <h5>{topic.category}</h5>
             <p>{topic.description}</p>
             <div className="btn_container">
-              <button className="reviewTopicButton" onClick={() => handleApproval(true)}>
+              <button className="reviewTopicButton" onClick={() => handleApproval(true, topic._id)}>
                 Approve
               </button>
-              <button className="denyTopicButton" onClick={() => handleApproval(false)}>
+              <button className="denyTopicButton" onClick={() => handleApproval(false, topic._id)}>
                 Deny
               </button>
             </div>

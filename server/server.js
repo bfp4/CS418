@@ -22,8 +22,8 @@ app.use(bodyParser.json());
 
 // MongoDB connection URI and client. Change the uri with your own connection string
 
-const uri = 'mongodb+srv://collin_gebauer:ogd8q1OQBujadpqJ@418lab.pvojs.mongodb.net/UAlbanyReviews';
-//const uri = "mongodb+srv://arileverton:uIjhJBm5Jw0Mb9dw@cluster0.xlpup.mongodb.net/"
+// const uri = 'mongodb+srv://collin_gebauer:ogd8q1OQBujadpqJ@418lab.pvojs.mongodb.net/UAlbanyReviews';
+const uri = "mongodb+srv://arileverton:uIjhJBm5Jw0Mb9dw@cluster0.xlpup.mongodb.net/"
 
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -89,10 +89,9 @@ app.post('/addTopic', async (req, res) => {
     }
 })
 
-// Get Teams
-app.get('/getTopics', async (req, res) => {
+app.get('/getUnapprovedTopics', async (req, res) => {
     try {
-        const topics = await Topic.find({}, {title:1, description:1, category:1}) // Populate member details
+        const topics = await Topic.find({ approved: false }); // Only find topics with approval set to true
         res.send(topics);
     } catch (error) {
         console.error('Error retrieving topics:', error);
@@ -100,19 +99,35 @@ app.get('/getTopics', async (req, res) => {
     }
 });
 
-app.post('approveTopic', async (req, res) => {
-    const { userStoryId } = req.params;
-    const { user_story, priority } = req.body;
+app.get('/getApprovedTopics', async (req, res) => {
     try {
-        const updatedUserStory = await UserStory.findByIdAndUpdate(
-            userStoryId,
-            { user_story, priority },
-            { new: true }
-        );
-        if (!updatedUserStory) {
-            return res.status(404).json({ message: 'User story not found' });
+        const topics = await Topic.find({ approved: true }); // Only find topics with approval set to true
+        res.send(topics);
+    } catch (error) {
+        console.error('Error retrieving topics:', error);
+        res.status(500).send(error);
+    }
+});
+
+
+app.post('/approveTopic', async (req, res) => {
+    const { id, approval } = req.body;
+    try {
+        if(approval){
+            const updatedUserStory = await Topic.findByIdAndUpdate(
+                id,
+                { approved: approval }
+            );
+            if (!updatedUserStory) {
+                return res.status(404).json({ message: 'Topic not found' });
+            }
+        } else {
+            updatedUserStory = await Topic.findByIdAndDelete(id);
+            if (!updatedUserStory) {
+                return res.status(404).json({ message: 'Topic not found' });
+            }
         }
-        res.status(200).json({ message: 'User story updated successfully', updatedUserStory });
+        res.status(200).json({ message: 'Topic updated successfully', updatedUserStory });
         // const topics = await Topic.find({}, {title:1, description:1, category:1}) // Populate member details
         // res.send(topics);
     } catch (error) {
