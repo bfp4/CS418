@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from "react";
 import "./styles.css";
+import axios from "axios"
 import { useNavigate } from "react-router-dom";
 
 const ReviewTopics = () => {
   const navigate = useNavigate();
-  const [topics, setTopics] = useState([
-    "Example Topic",
-    "Example Topic",
-    "Example Topic",
-    "Example Topic",
-    "Example Topic",
-  ]);
+  const [topics, setTopics] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:5001/getTopics')
+    .then(function (response) {
+      console.log(response)
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}, []);
 
   //   needs implementation
   const handleAddTopic = () => {

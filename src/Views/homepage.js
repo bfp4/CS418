@@ -9,6 +9,12 @@ const Admin_Homepage = () => {
     navigate(link);
   };
 
+  const handleSignOut = (event) => {
+    event.preventDefault()
+    localStorage.clear()
+    navigate("/Login");
+}
+
   const handleSubmit = async (e) => {};
 
   return (
@@ -20,7 +26,7 @@ const Admin_Homepage = () => {
       <button onClick={handleSubmit} className="TopicsButton">
         View topics
       </button>
-      <button onClick={() => handleClick("/login")} className="LogoutButton">
+      <button onClick={(event) => handleSignOut(event)} className="LogoutButton">
         Logout
       </button>
     </div>
