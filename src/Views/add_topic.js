@@ -44,9 +44,25 @@ const AddTopic = () => {
           className="CenteredInputField"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
+          required
         >
-          <option value="Example1">Example1</option>
-          <option value="Example2">Example2</option>
+          <option value="" disabled>
+            Choose Category
+          </option>
+          <option value="Food & Dining">Food & Dining</option>
+          <option value="Professors">Professors</option>
+          <option value="Courses">Courses</option>
+          <option value="Departments">Departments</option>
+          <option value="Housing & Dormitories">Housing & Dormitories</option>
+          <option value="Libraries">Libraries</option>
+          <option value="Gyms">Gyms</option>
+          <option value="Career Services">Career Services</option>
+          <option value="Health Services">Health Services</option>
+          <option value="Campus Life">Campus Life</option>
+          <option value="Transportation">Transportation</option>
+          <option value="Computer Labs">Computer Labs</option>
+          <option value="Safety & Security">Safety & Security</option>
+          <option value="Social Spaces">Social Spaces</option>
         </select>
 
         <div className="button_container">
