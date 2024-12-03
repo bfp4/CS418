@@ -1,7 +1,10 @@
 const mongoose = require("mongoose");
 
 const TopicsSchema = new mongoose.Schema({
-    topic_name: String
+    title: String,
+    description: String,
+    category: String,
+    approved: Boolean
 });
 
 const Topic = mongoose.model("Topics", TopicsSchema);

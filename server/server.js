@@ -8,6 +8,7 @@ const mongoose = require("mongoose")
 const cors = require("cors")
 const bodyParser = require("body-parser")
 const User = require("./UserSchema")
+const Topic = require("./TopicsSchema")
 
 const app = express();
 
@@ -21,7 +22,8 @@ app.use(bodyParser.json());
 
 // MongoDB connection URI and client. Change the uri with your own connection string
 
-const uri = 'mongodb+srv://collin_gebauer:ogd8q1OQBujadpqJ@418lab.pvojs.mongodb.net/UAlbanyReviews';
+// const uri = 'mongodb+srv://collin_gebauer:ogd8q1OQBujadpqJ@418lab.pvojs.mongodb.net/UAlbanyReviews';
+const uri = "mongodb+srv://arileverton:uIjhJBm5Jw0Mb9dw@cluster0.xlpup.mongodb.net/"
 
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -73,6 +75,20 @@ app.get('/login', async (req, res) => {
         return res.status(500).json({ message: "Server error", error: error.message });
     }
 });
+
+// Create Rating Route
+app.post('/addTopic', async (req, res) => {
+    const { title, description, category, approved } = req.body;
+
+    try {
+        const newTopic = new Topic({ title, description, category, approved });
+        await newTopic.save(); // Save using Mongoose
+        return res.status(201).json({ message: 'New topic successfully created' });
+    } catch (error) {
+        console.error('Error inserting topic:', error);
+        return res.status(500).json({ message: "Server error", error: error.message });
+    }
+})
 
 // Create Rating Route
 app.post('/createRating', async (req, res) => {
