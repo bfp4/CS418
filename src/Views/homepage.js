@@ -13,9 +13,8 @@ const Admin_Homepage = () => {
     event.preventDefault()
     localStorage.clear()
     navigate("/Login");
-}
+  };
 
-  const handleSubmit = async (e) => {};
 
   return (
     <div className="adminHome">

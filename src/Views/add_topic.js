@@ -16,7 +16,9 @@ const AddTopic = () => {
     setCategory("");
   };
 
-
+  const handleGoBack = () => {
+    navigate(-1);
+  };
 
 
   const handleSubmit = () => {
@@ -83,8 +85,8 @@ const AddTopic = () => {
           <button type="submit" className="AddButton">
             Submit topic request
           </button>
-          <button type="button" className="GobackButton">
-            Go back
+          <button className="addtopicButton" onClick={handleGoBack}>
+            Go Back
           </button>
         </div>
       </form>
