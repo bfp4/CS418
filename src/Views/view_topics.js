@@ -21,11 +21,11 @@ const ViewTopics = () => {
   
     //   needs implementation
     const handleAddTopic = () => {
-      navigate("/Home")
+      navigate("/AddTopic")
     };
   
     const handleGoBack = () => {
-      navigate(-1)
+      navigate("/Home")
     };
 
     const handleClick = id => {

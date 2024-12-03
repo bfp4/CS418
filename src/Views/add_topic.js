@@ -17,14 +17,8 @@ const AddTopic = () => {
   };
 
   const handleGoBack = () => {
-<<<<<<< HEAD
     navigate("/ViewTopics")
   };
-=======
-    navigate(-1);
-  };
-
->>>>>>> dc56f5e62cc70601ebfe6bf780657a125c411f27
 
   const handleSubmit = () => {
     
@@ -90,13 +84,8 @@ const AddTopic = () => {
           <button type="submit" className="AddButton">
             Submit topic request
           </button>
-<<<<<<< HEAD
           <button type="button" className="GobackButton" onClick={handleGoBack}>
             Go back
-=======
-          <button className="addtopicButton" onClick={handleGoBack}>
-            Go Back
->>>>>>> dc56f5e62cc70601ebfe6bf780657a125c411f27
           </button>
         </div>
       </form>
