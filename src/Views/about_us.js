@@ -9,7 +9,7 @@ const Aboutus = () => {
   };
 
   const handleGoBack = () => {
-    navigate(-1)
+    navigate("/Home")
   };
   return (
     <div className="Aboutus">
