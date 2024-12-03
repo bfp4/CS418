@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./styles.css";
 
 const AdminEachTopic = () => {
+  const navigate = useNavigate()
   // Sample data for the topic
   const [topic, setTopic] = useState({
     title: "Sample Topic Title",
@@ -15,6 +17,10 @@ const AdminEachTopic = () => {
 
   const [newReview, setNewReview] = useState("");
   const reviewsEndRef = useRef(null); // Reference to scroll to the end of the reviews
+
+    const handleGoBack = () => {
+      navigate(-1)
+    };
 
   const handleAddReview = () => {
     if (newReview.trim()) {
@@ -94,7 +100,7 @@ const AdminEachTopic = () => {
         <button onClick={handleDeleteTopic} className="DeleteButton">
           Delete Topic
         </button>
-        <button className="GobackButton">Go back</button>
+        <button className="GobackButton" onClick={handleGoBack}>Go back</button>
       </div>
     </div>
   );
