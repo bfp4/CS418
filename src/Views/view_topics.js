@@ -58,4 +58,3 @@ const ViewTopics = () => {
 }
 
 export default ViewTopics;
-
