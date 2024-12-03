@@ -112,9 +112,10 @@ app.get('/getApprovedTopics', async (req, res) => {
 
 app.post('/approveTopic', async (req, res) => {
     const { id, approval } = req.body;
+    let updatedUserStory;
     try {
         if(approval){
-            const updatedUserStory = await Topic.findByIdAndUpdate(
+            updatedUserStory = await Topic.findByIdAndUpdate(
                 id,
                 { approved: approval }
             );
