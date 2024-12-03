@@ -20,7 +20,8 @@ const Login = () => {
                 if (res.data) {
                     alert('Login Successful')
                     localStorage.clear()
-                    localStorage.setItem('loggedInUser', res.data._id)
+                    localStorage.setItem('loggedInUser', true)
+                    localStorage.setItem('role', res.data.role)
     	            navigate("/Home");
                 }
                 else {
