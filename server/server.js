@@ -92,8 +92,7 @@ app.post('/addTopic', async (req, res) => {
 // Get Teams
 app.get('/getTopics', async (req, res) => {
     try {
-        const topics = await Topic.find()
-            .populate('title', 'description', 'category'); // Populate member details
+        const topics = await Topic.find({}, {title:1, description:1, category:1}) // Populate member details
         res.send(topics);
     } catch (error) {
         console.error('Error retrieving topics:', error);
