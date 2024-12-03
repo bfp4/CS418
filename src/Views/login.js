@@ -13,7 +13,22 @@ const Login = () => {
     navigate("/signup");
   };
 
-  const handleSubmit = async (e) => {};
+  const handleSubmit = (event) => {
+    event.preventDefault()
+        axios.get('http://localhost:5001/login', { params: { username, password}})
+            .then((res) => {
+                if (res.data) {
+                    alert('Login Successful')
+                    localStorage.clear()
+                    localStorage.setItem('loggedInUser', res.data._id)
+    	            navigate("/Home");
+                }
+                else {
+                    alert('Wrong Credentials')
+                }
+            })
+            .catch((err) => alert('Error in Login'))
+  };
 
   return (
     <div className="LoginTab">
