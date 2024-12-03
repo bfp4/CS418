@@ -331,7 +331,7 @@ h2 {
 
 .GobackButton {
   padding: 10px;
-  margin-left: 10px;
+
   width: 188px;
   border-radius: 10px;
   margin-top: 10px;
@@ -588,7 +588,7 @@ h2 {
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
 
   overflow-y: auto; /* Enable scrolling for the reviews list */
-  max-width: 800px;
+  width: 50%;
   margin: 0 auto;
 }
 
@@ -618,25 +618,43 @@ textarea {
   resize: vertical;
 }
 
-button {
-  padding: 10px 20px;
-  background-color: #dd33d0;
+.reviewButton {
   color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+
+  padding: 10px;
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 10px;
+  background: rgb(0, 158, 55);
+  background: radial-gradient(
+    circle,
+    rgba(0, 158, 55, 1) 0%,
+    rgba(0, 255, 16, 1) 100%
+  );
+}
+
+.reviewButton:hover {
+  transform: scale(1.03);
+}
+
+.DeleteButton {
+  color: white;
+
+  background: rgb(180, 58, 93);
+  background: radial-gradient(
+    circle,
+    rgba(180, 58, 93, 1) 0%,
+    rgba(253, 29, 29, 1) 36%,
+    rgba(252, 69, 82, 1) 100%
+  );
+  padding: 10px;
+  width: 100%;
+  border-radius: 10px;
   margin-top: 10px;
 }
 
-button:hover {
-  background-color: #9100db;
-}
-
-button.DeleteButton {
-  background-color: red;
-}
-
-button.DeleteButton:hover {
+.DeleteButton:hover {
+  transform: scale(1.03);
   background-color: darkred;
 }
 
@@ -645,4 +663,64 @@ ul {
   padding-left: 0;
   max-height: 300px;
   overflow-y: auto; /* Enable scrolling for the reviews list */
+}
+
+/* review_topic.js */
+
+.reviewTopicButton {
+  color: white;
+
+  padding: 10px;
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 10px;
+  background: rgb(0, 158, 55);
+  background: radial-gradient(
+    circle,
+    rgba(0, 158, 55, 1) 0%,
+    rgba(0, 255, 16, 1) 100%
+  );
+}
+
+.reviewTopic:hover {
+  transform: scale(1.03);
+}
+
+.denyTopicButton {
+  color: white;
+
+  background: rgb(180, 58, 93);
+  background: radial-gradient(
+    circle,
+    rgba(180, 58, 93, 1) 0%,
+    rgba(253, 29, 29, 1) 36%,
+    rgba(252, 69, 82, 1) 100%
+  );
+  padding: 10px;
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.denyTopicButton:hover {
+  transform: scale(1.03);
+  background-color: darkred;
+}
+
+.adminreview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+  margin: 50px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 50%;
+}
+
+.btn_container {
+  flex-direction: row;
+  gap: 5px;
 }

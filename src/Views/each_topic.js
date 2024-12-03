@@ -55,11 +55,6 @@ const AdminEachTopic = () => {
       <h2>{topic.title}</h2>
       <h4>{topic.category}</h4>
 
-      {/* Optional image */}
-      {topic.image && (
-        <img src={topic.image} alt="Topic" className="topic-image" />
-      )}
-
       <div>
         <h3>Reviews</h3>
         {topic.reviews.length > 0 ? (
@@ -67,7 +62,10 @@ const AdminEachTopic = () => {
             {topic.reviews.map((review) => (
               <li key={review.id}>
                 <p>{review.text}</p>
-                <button onClick={() => handleDeleteReview(review.id)}>
+                <button
+                  onClick={() => handleDeleteReview(review.id)}
+                  className="DeleteButton"
+                >
                   Delete Review
                 </button>
               </li>
@@ -83,7 +81,9 @@ const AdminEachTopic = () => {
           onChange={(e) => setNewReview(e.target.value)}
           placeholder="Add your review here..."
         />
-        <button onClick={handleAddReview}>Add Review</button>
+        <button onClick={handleAddReview} className="reviewButton">
+          Add Review
+        </button>
 
         {/* Scroll to the latest review */}
         <div ref={reviewsEndRef} />
@@ -94,6 +94,7 @@ const AdminEachTopic = () => {
         <button onClick={handleDeleteTopic} className="DeleteButton">
           Delete Topic
         </button>
+        <button className="GobackButton">Go back</button>
       </div>
     </div>
   );
