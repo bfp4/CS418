@@ -9,7 +9,18 @@ const AddTopic = () => {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
 
+
+  const resetForm = () => {
+    setTitle("");
+    setDescription("");
+    setCategory("");
+  };
+
+
+
+
   const handleSubmit = () => {
+    
     const topicValues = {
       title: title,
       description: description,
@@ -18,8 +29,11 @@ const AddTopic = () => {
     }
 
     axios.post("http://localhost:5001/addTopic", topicValues)
-      .then(res => navigate("/home"))
-      .catch(err => alert("Error on adding."))
+      .then((res) => {
+        resetForm(); 
+        navigate("/home"); 
+      })
+      .catch((err) => alert("Error on adding."));
   };
 
   return (
