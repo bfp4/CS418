@@ -24,9 +24,11 @@ const Signup = () => {
     }
     axios.post("http://localhost:5001/signup", signupValues)
       .then(res => {
+        console.log(res)
           localStorage.clear()
           localStorage.setItem('loggedInUser', true)
           localStorage.setItem('role', role)
+          localStorage.setItem('user_id', res.data._id)
           window.location.reload()   
       })
       .catch(err => alert("Error on Sign up."))

@@ -9,6 +9,7 @@ const cors = require("cors")
 const bodyParser = require("body-parser")
 const User = require("./UserSchema")
 const Topic = require("./TopicsSchema")
+const Rating = require("./RatingsSchema")
 
 const app = express();
 
@@ -22,8 +23,8 @@ app.use(bodyParser.json());
 
 // MongoDB connection URI and client. Change the uri with your own connection string
 
- const uri = 'mongodb+srv://collin_gebauer:ogd8q1OQBujadpqJ@418lab.pvojs.mongodb.net/UAlbanyReviews';
-//const uri = "mongodb+srv://arileverton:uIjhJBm5Jw0Mb9dw@cluster0.xlpup.mongodb.net/"
+//  const uri = 'mongodb+srv://collin_gebauer:ogd8q1OQBujadpqJ@418lab.pvojs.mongodb.net/UAlbanyReviews';
+const uri = "mongodb+srv://arileverton:uIjhJBm5Jw0Mb9dw@cluster0.xlpup.mongodb.net/"
 
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -150,12 +151,14 @@ app.post('/approveTopic', async (req, res) => {
 
 // Create Rating Route
 app.post('/createRating', async (req, res) => {
-    try {
-        const rating = new Rating(req.body);
-        await project
-    }catch (error) {
-        res.status(500).json({ error: "Failed to create rating", details: error.message });
-    }
-    
-})
+    const { user_id, topic_id, rating, review } = req.body;
 
+    try {
+        const newRating = new Rating({ user_id, topic_id, rating, review });
+        await newRating.save(); // Save using Mongoose
+        return res.status(201).json({ message: 'New rating successfully created' });
+    } catch (error) {
+        console.error('Error posting review:', error);
+        return res.status(500).json({ message: "Server error", error: error.message });
+    }
+})

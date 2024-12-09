@@ -22,6 +22,7 @@ const Login = () => {
                     localStorage.clear()
                     localStorage.setItem('loggedInUser', true)
                     localStorage.setItem('role', res.data.role)
+                    localStorage.setItem('user_id', res.data._id)
                     window.location.reload()      
                 }
                 else {

@@ -26,6 +26,11 @@ const EachTopic = () => {
     ],
   });
 
+  const reviews = [
+    { id: 1, text: "This is a great topic!" },
+    { id: 2, text: "I found this topic very informative." },
+  ]
+
 
   useEffect(() => {
     axios
@@ -44,13 +49,21 @@ const EachTopic = () => {
   };
 
   const handleAddReview = () => {
-    if (role === "Student" && newReview.trim()) {
-      const newReviewObj = { id: Date.now(), text: newReview };
-      setTopic((prevTopic) => ({
-        ...prevTopic,
-        reviews: [...prevTopic.reviews, newReviewObj],
-      }));
-      setNewReview(""); // Clear the review input field
+    const ratingValues = {
+      user_id: localStorage.getItem('user_id'),
+      topic_id: id,
+      rating: newRating,
+      review: newReview,
+    }
+    if(newReview != "" && newRating != ""){
+      axios
+      .post("http://localhost:5001/createRating", ratingValues) // Pass `id` as query parameter
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.error("Error posting rating:", error);
+      });
     }
   };
 
@@ -87,9 +100,9 @@ const EachTopic = () => {
 
       <div>
         <h3>Reviews</h3>
-        {topic.reviews.length > 0 ? (
+        {reviews.length > 0 ? (
           <ul>
-            {topic.reviews.map((review) => (
+            {reviews.map((review) => (
               <li key={review.id}>
                 <p>{review.text}</p>
                 {role === "Admin" && (
