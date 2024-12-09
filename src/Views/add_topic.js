@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,11 @@ const AddTopic = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
+
+  useEffect(() => {
+    if(localStorage.getItem('role') == "Faculty")
+      navigate("/Home")
+  }, [])
 
 
   const resetForm = () => {
