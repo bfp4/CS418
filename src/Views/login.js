@@ -22,7 +22,7 @@ const Login = () => {
                     localStorage.clear()
                     localStorage.setItem('loggedInUser', true)
                     localStorage.setItem('role', res.data.role)
-    	            navigate("/Home");
+                    window.location.reload()      
                 }
                 else {
                     alert('Wrong Credentials')
@@ -33,7 +33,7 @@ const Login = () => {
 
   return (
     <div className="LoginTab">
-      <h2>Welcome, Login</h2>
+      <h2>Login</h2>
       <input
         type="text"
         className="CenteredInputField"

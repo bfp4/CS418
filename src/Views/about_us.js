@@ -11,6 +11,7 @@ const Aboutus = () => {
   const handleGoBack = () => {
     navigate("/Home")
   };
+  
   return (
     <div className="Aboutus">
       <h2>About Us</h2>

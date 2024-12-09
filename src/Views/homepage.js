@@ -12,7 +12,7 @@ const Admin_Homepage = () => {
   const handleSignOut = (event) => {
     event.preventDefault()
     localStorage.clear()
-    navigate("/Login");
+    window.location.reload()
   };
 
 

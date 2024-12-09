@@ -27,7 +27,7 @@ const Signup = () => {
           localStorage.clear()
           localStorage.setItem('loggedInUser', true)
           localStorage.setItem('role', role)
-        navigate("/Login");
+          window.location.reload()   
       })
       .catch(err => alert("Error on Sign up."))
   };

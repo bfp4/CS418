@@ -13,8 +13,7 @@ const RatingsSchema = new mongoose.Schema({
       type: String,
       required: true,
       maxlength: 800,
-    },
-    image_id: Number
+    }
 });
 
 const Rating = mongoose.model("Rating", RatingsSchema);

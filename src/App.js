@@ -11,19 +11,20 @@ import AddTopic from "./Views/add_topic.js";
 import EachTopic from "./Views/each_topic.js"; // Updated the name to PascalCase
 import ReviewTopics from "./Views/review_topic.js";
 function App() {
+  const isLoggedIn = localStorage.getItem('loggedInUser')
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Navigate to="/Login" />} />
-          <Route path="/Login" element={<Login />} />
-          <Route path="/Signup" element={<Signup />} />
-          <Route path="/Home" element={<Homepage />} />
-          <Route path="/Aboutus" element={<Aboutus />} />
-          <Route path="/ViewTopics" element={<ViewTopics />} />
-          <Route path="/EachTopic" element={<EachTopic />} />
-          <Route path="/AddTopic" element={<AddTopic />} />
-          <Route path="/ReviewTopics" element={<ReviewTopics />} />
+          <Route path="/Login" element={isLoggedIn ? <Navigate to="/Home" /> : <Login />} />
+          <Route path="/Signup" element={isLoggedIn ? <Navigate to="/Home" /> : <Signup />} />
+          <Route path="/Home" element={isLoggedIn ? <Homepage /> : <Navigate to="/Login" />} />
+          <Route path="/Aboutus" element={isLoggedIn ? <Aboutus /> : <Navigate to="/Login" />} />
+          <Route path="/ViewTopics" element={isLoggedIn ? <ViewTopics /> : <Navigate to="/Login" />} />
+          <Route path="/EachTopic" element={isLoggedIn ? <EachTopic /> : <Navigate to="/Login" />} />
+          <Route path="/AddTopic" element={isLoggedIn ? <AddTopic /> : <Navigate to="/Login" />} />
+          <Route path="/ReviewTopics" element={isLoggedIn ? <ReviewTopics /> : <Navigate to="/Login" />} />
         </Routes>
       </BrowserRouter>
     </div>
