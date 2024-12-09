@@ -3,16 +3,17 @@ import { useNavigate } from "react-router-dom";
 import "./styles.css";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDog } from "@fortawesome/free-solid-svg-icons"; // Example icon
 
 const EachTopic = () => {
   const location = useLocation();
   const { id } = location.state || {}; // Extract the passed `id`
   const navigate = useNavigate();
-  
+
   const [newReview, setNewReview] = useState("");
   const [newRating, setNewRating] = useState("");
   const reviewsEndRef = useRef(null);
-
 
   // Determine the role of the user
   const role = localStorage.getItem("role");
@@ -26,6 +27,22 @@ const EachTopic = () => {
     ],
   });
 
+  const RatingDisplay = ({ rating }) => {
+    const maxRating = 5; // Maximum number of Great Danes
+    return (
+      <div className="rating-display">
+        {[...Array(maxRating)].map((_, index) => (
+          <FontAwesomeIcon
+            key={index}
+            icon={faDog}
+            style={{
+              color: index < rating ? "#FFD700" : "#D3D3D3", // Gold for filled, gray for empty
+            }}
+          />
+        ))}
+      </div>
+    );
+  };
 
   useEffect(() => {
     axios
@@ -45,12 +62,17 @@ const EachTopic = () => {
 
   const handleAddReview = () => {
     if (role === "Student" && newReview.trim()) {
-      const newReviewObj = { id: Date.now(), text: newReview };
+      const newReviewObj = {
+        id: Date.now(),
+        text: newReview,
+        rating: parseInt(newRating, 10) || 0, // Ensure the rating is a number
+      };
       setTopic((prevTopic) => ({
         ...prevTopic,
         reviews: [...prevTopic.reviews, newReviewObj],
       }));
       setNewReview(""); // Clear the review input field
+      setNewRating(""); // Clear the rating input field
     }
   };
 
@@ -82,16 +104,18 @@ const EachTopic = () => {
 
   return (
     <div className="adminEachTopic">
-      <h2>{topic.title}</h2>
-      <h4>{topic.category}</h4>
+      <h2>{topic.title || "Loading..."}</h2>
+      <h4>{topic.category || "Loading..."}</h4>
 
       <div>
         <h3>Reviews</h3>
-        {topic.reviews.length > 0 ? (
+        {/* Ensure topic.reviews is defined before rendering */}
+        {Array.isArray(topic.reviews) && topic.reviews.length > 0 ? (
           <ul>
             {topic.reviews.map((review) => (
               <li key={review.id}>
                 <p>{review.text}</p>
+                <RatingDisplay rating={review.rating || 0} />
                 {role === "Admin" && (
                   <button
                     onClick={() => handleDeleteReview(review.id)}
@@ -106,29 +130,6 @@ const EachTopic = () => {
         ) : (
           <p>No reviews yet.</p>
         )}
-
-        {/* Add a review */}
-        {role === "Student" && (
-          <>
-            <label>Rating:</label><br />     
-            <input
-                type="number"
-                value={newRating}
-                onChange={(e) => setNewRating(e.target.value)}
-            />
-            <textarea
-              value={newReview}
-              onChange={(e) => setNewReview(e.target.value)}
-              placeholder="Add your review here..."
-            />
-            <button onClick={handleAddReview} className="reviewButton">
-              Add Review
-            </button>
-          </>
-        )}
-
-        {/* Scroll to the latest review */}
-        <div ref={reviewsEndRef} />
       </div>
 
       {/* Delete Topic */}
