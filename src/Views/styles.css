@@ -90,7 +90,7 @@
 .adminHome {
   display: flex;
   flex-direction: column;
-  padding: 100px;
+  padding: 200px;
   margin: 100px;
   justify-content: center;
   border-radius: 25px;
@@ -269,7 +269,7 @@
   flex-direction: column;
   align-items: center;
   padding: 50px;
-  margin: 50px;
+  margin: 25px;
   background-color: #fff;
   border-radius: 15px;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
@@ -528,7 +528,7 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 50px;
+  padding: 200px;
   margin: 50px;
   background-color: #fff;
   border-radius: 15px;
@@ -581,15 +581,13 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 50px;
+  padding: 200px;
   margin: 50px;
   background-color: #fff;
   border-radius: 15px;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
 
   overflow-y: auto; /* Enable scrolling for the reviews list */
-  width: 50%;
-  margin: 0 auto;
 }
 
 h2 {
