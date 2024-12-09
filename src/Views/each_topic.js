@@ -18,14 +18,8 @@ const EachTopic = () => {
   // Determine the role of the user
   const role = localStorage.getItem("role");
 
-  const [topic, setTopic] = useState({
-    title: "Sample Topic Title",
-    category: "Sample Category",
-    reviews: [
-      { id: 1, text: "This is a great topic!" },
-      { id: 2, text: "I found this topic very informative." },
-    ],
-  });
+  const [topic, setTopic] = useState({});
+  const [reviews, setReviews] = useState([])
 
   const RatingDisplay = ({ rating }) => {
     const maxRating = 5; // Maximum number of Great Danes
@@ -53,6 +47,15 @@ const EachTopic = () => {
       })
       .catch((error) => {
         console.error("Error fetching topic:", error);
+      });
+    axios
+      .get("http://localhost:5001/getRatings", { params: { id } }) // Pass `id` as query parameter
+      .then((res) => {
+        console.log(res);
+        setReviews(res.data); // Use the response data to set the topic
+      })
+      .catch((error) => {
+        console.error("Error fetching ratings:", error);
       });
   }, [id]);
 
