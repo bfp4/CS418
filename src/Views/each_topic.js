@@ -2,13 +2,16 @@ import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./styles.css";
 import { useLocation } from "react-router-dom";
-import axios from "axios"
+import axios from "axios";
 
 const AdminEachTopic = () => {
   const location = useLocation();
   const { id } = location.state || {}; // Extract the passed `id`
-  const navigate = useNavigate()
-  // Sample data for the topic
+  const navigate = useNavigate();
+
+  // Determine the role of the user
+  const role = localStorage.getItem("role");
+
   const [topic, setTopic] = useState({
     title: "Sample Topic Title",
     category: "Sample Category",
@@ -18,28 +21,27 @@ const AdminEachTopic = () => {
     ],
   });
 
+  const [newReview, setNewReview] = useState("");
+  const reviewsEndRef = useRef(null);
+
   useEffect(() => {
     axios
-        .get('http://localhost:5001/getTopic', { params: { id } }) // Pass `id` as query parameter
-        .then(res => {
-            console.log(res);
-            setTopic(res.data); // Use the response data to set the topic
-        })
-        .catch(error => {
-            console.error('Error fetching topic:', error);
-        });
-}, [id]);
+      .get("http://localhost:5001/getTopic", { params: { id } }) // Pass `id` as query parameter
+      .then((res) => {
+        console.log(res);
+        setTopic(res.data); // Use the response data to set the topic
+      })
+      .catch((error) => {
+        console.error("Error fetching topic:", error);
+      });
+  }, [id]);
 
-
-  const [newReview, setNewReview] = useState("");
-  const reviewsEndRef = useRef(null); // Reference to scroll to the end of the reviews
-
-    const handleGoBack = () => {
-      navigate(-1)
-    };
+  const handleGoBack = () => {
+    navigate(-1);
+  };
 
   const handleAddReview = () => {
-    if (newReview.trim()) {
+    if (role === "Student" && newReview.trim()) {
       const newReviewObj = { id: Date.now(), text: newReview };
       setTopic((prevTopic) => ({
         ...prevTopic,
@@ -50,18 +52,22 @@ const AdminEachTopic = () => {
   };
 
   const handleDeleteTopic = () => {
-    setTopic({
-      title: "",
-      category: "",
-      reviews: [],
-    });
+    if (role === "Admin") {
+      setTopic({
+        title: "",
+        category: "",
+        reviews: [],
+      });
+    }
   };
 
   const handleDeleteReview = (reviewId) => {
-    setTopic((prevTopic) => ({
-      ...prevTopic,
-      reviews: prevTopic.reviews.filter((review) => review.id !== reviewId),
-    }));
+    if (role === "Admin") {
+      setTopic((prevTopic) => ({
+        ...prevTopic,
+        reviews: prevTopic.reviews.filter((review) => review.id !== reviewId),
+      }));
+    }
   };
 
   // Auto-scroll to the latest review when a new review is added
@@ -69,7 +75,7 @@ const AdminEachTopic = () => {
     if (reviewsEndRef.current) {
       reviewsEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, [topic.reviews]); // Runs every time the reviews change
+  }, [topic.reviews]);
 
   return (
     <div className="adminEachTopic">
@@ -83,12 +89,14 @@ const AdminEachTopic = () => {
             {topic.reviews.map((review) => (
               <li key={review.id}>
                 <p>{review.text}</p>
-                <button
-                  onClick={() => handleDeleteReview(review.id)}
-                  className="DeleteButton"
-                >
-                  Delete Review
-                </button>
+                {role === "Admin" && (
+                  <button
+                    onClick={() => handleDeleteReview(review.id)}
+                    className="DeleteButton"
+                  >
+                    Delete Review
+                  </button>
+                )}
               </li>
             ))}
           </ul>
@@ -97,14 +105,18 @@ const AdminEachTopic = () => {
         )}
 
         {/* Add a review */}
-        <textarea
-          value={newReview}
-          onChange={(e) => setNewReview(e.target.value)}
-          placeholder="Add your review here..."
-        />
-        <button onClick={handleAddReview} className="reviewButton">
-          Add Review
-        </button>
+        {role === "Student" && (
+          <>
+            <textarea
+              value={newReview}
+              onChange={(e) => setNewReview(e.target.value)}
+              placeholder="Add your review here..."
+            />
+            <button onClick={handleAddReview} className="reviewButton">
+              Add Review
+            </button>
+          </>
+        )}
 
         {/* Scroll to the latest review */}
         <div ref={reviewsEndRef} />
@@ -112,10 +124,14 @@ const AdminEachTopic = () => {
 
       {/* Delete Topic */}
       <div>
-        <button onClick={handleDeleteTopic} className="DeleteButton">
-          Delete Topic
+        {role === "Admin" && (
+          <button onClick={handleDeleteTopic} className="DeleteButton">
+            Delete Topic
+          </button>
+        )}
+        <button className="GobackButton" onClick={handleGoBack}>
+          Go back
         </button>
-        <button className="GobackButton" onClick={handleGoBack}>Go back</button>
       </div>
     </div>
   );
