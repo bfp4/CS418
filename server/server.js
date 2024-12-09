@@ -162,3 +162,14 @@ app.post('/createRating', async (req, res) => {
         return res.status(500).json({ message: "Server error", error: error.message });
     }
 })
+
+app.get('/getRatings', async (req, res) => {
+    const { id } = req.query;
+    try {
+        const ratings = await Rating.find({ topic_id: id }); // Only find topics with approval set to true
+        res.send(ratings);
+    } catch (error) {
+        console.error('Error retrieving rating:', error);
+        res.status(500).send(error);
+    }
+});
