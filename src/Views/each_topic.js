@@ -4,10 +4,15 @@ import "./styles.css";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 
-const AdminEachTopic = () => {
+const EachTopic = () => {
   const location = useLocation();
   const { id } = location.state || {}; // Extract the passed `id`
   const navigate = useNavigate();
+  
+  const [newReview, setNewReview] = useState("");
+  const [newRating, setNewRating] = useState("");
+  const reviewsEndRef = useRef(null);
+
 
   // Determine the role of the user
   const role = localStorage.getItem("role");
@@ -21,8 +26,6 @@ const AdminEachTopic = () => {
     ],
   });
 
-  const [newReview, setNewReview] = useState("");
-  const reviewsEndRef = useRef(null);
 
   useEffect(() => {
     axios
@@ -107,6 +110,12 @@ const AdminEachTopic = () => {
         {/* Add a review */}
         {role === "Student" && (
           <>
+            <label>Rating:</label><br />     
+            <input
+                type="number"
+                value={newRating}
+                onChange={(e) => setNewRating(e.target.value)}
+            />
             <textarea
               value={newReview}
               onChange={(e) => setNewReview(e.target.value)}
@@ -137,4 +146,4 @@ const AdminEachTopic = () => {
   );
 };
 
-export default AdminEachTopic;
+export default EachTopic;
