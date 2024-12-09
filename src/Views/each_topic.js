@@ -115,7 +115,7 @@ const EachTopic = () => {
         {/* Ensure topic.reviews is defined before rendering */}
         {Array.isArray(topic.reviews) && topic.reviews.length > 0 ? (
           <ul>
-            {reviews.map((review) => (
+            {topic.reviews.map((review) => (
               <li key={review.id}>
                 <p>{review.text}</p>
                 <RatingDisplay rating={review.rating || 0} />
@@ -133,6 +133,29 @@ const EachTopic = () => {
         ) : (
           <p>No reviews yet.</p>
         )}
+        
+        {/* Add a review */}
+        {role === "Student" && (
+          <>
+            <label>Rating:</label><br />     
+            <input
+                type="number"
+                value={newRating}
+                onChange={(e) => setNewRating(e.target.value)}
+            />
+            <textarea
+              value={newReview}
+              onChange={(e) => setNewReview(e.target.value)}
+              placeholder="Add your review here..."
+            />
+            <button onClick={handleAddReview} className="reviewButton">
+              Add Review
+            </button>
+          </>
+        )}
+
+        {/* Scroll to the latest review */}
+        <div ref={reviewsEndRef} />
       </div>
 
       {/* Delete Topic */}
