@@ -8,6 +8,8 @@ const ReviewTopics = () => {
   const [topics, setTopics] = useState([]);
 
   useEffect(() => {
+    if(localStorage.getItem('role') != "Admin")
+      navigate("/Home")
     axios.get('http://localhost:5001/getUnapprovedTopics')
     .then(function (response) {
       console.log(response)
