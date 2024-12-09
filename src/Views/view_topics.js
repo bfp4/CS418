@@ -18,7 +18,7 @@ const ViewTopics = () => {
       });
     }, []);
   
-    //   needs implementation
+
     const handleAddTopic = () => {
       navigate("/AddTopic")
     };
