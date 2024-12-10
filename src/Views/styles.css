@@ -581,7 +581,7 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 200px;
+  padding: 100px;
   margin: 50px;
   background-color: #fff;
   border-radius: 15px;
@@ -726,6 +726,6 @@ ul {
 .adminEachTopic li {
   border-radius: 15px;
   box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.2);
-  padding: 20px;
-  margin: 15px;
+  padding: 50px;
+  margin: 50px;
 }
