@@ -73,20 +73,11 @@ const EachTopic = () => {
       .post("http://localhost:5001/createRating", reviewValues) // Pass `id` as query parameter
       .then((res) => {
         console.log(res);
+        window.location.reload()
       })
       .catch((error) => {
         console.error("Error fetching ratings:", error);
       });
-  };
-
-  const handleDeleteTopic = () => {
-    if (role === "Admin") {
-      setTopic({
-        title: "",
-        category: "",
-        reviews: [],
-      });
-    }
   };
 
   const handleDeleteReview = (reviewId) => {
@@ -109,14 +100,14 @@ const EachTopic = () => {
     <div className="adminEachTopic">
       <h2>{topic.title || "Loading..."}</h2>
       <h4>{topic.category || "Loading..."}</h4>
-
+      <p>{topic.description || "Loading..."}</p>
       <div>
         <h3>Reviews</h3>
         {reviews.length > 0 ? (
           <ul>
             {reviews.map((review) => (
               <li key={review.id}>
-                <p>{review.text}</p>
+                <p>{review.review}</p>
                 <RatingDisplay rating={review.rating || 0} />
                 {role === "Admin" && (
                   <button
@@ -159,11 +150,6 @@ const EachTopic = () => {
 
       {/* Delete Topic */}
       <div>
-        {role === "Admin" && (
-          <button onClick={handleDeleteTopic} className="DeleteButton">
-            Delete Topic
-          </button>
-        )}
         <button className="GobackButton" onClick={handleGoBack}>
           Go back
         </button>
