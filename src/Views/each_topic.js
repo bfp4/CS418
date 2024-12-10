@@ -81,12 +81,15 @@ const EachTopic = () => {
   };
 
   const handleDeleteReview = (reviewId) => {
-    if (role === "Admin") {
-      setTopic((prevTopic) => ({
-        ...prevTopic,
-        reviews: prevTopic.reviews.filter((review) => review.id !== reviewId),
-      }));
-    }
+    axios
+      .delete(`http://localhost:5001/deleteRating/${reviewId}`) // Pass `id` as query parameter
+      .then((res) => {
+        console.log(res);
+        window.location.reload()
+      })
+      .catch((error) => {
+        console.error("Error delete ratings:", error);
+      });
   };
 
   // Auto-scroll to the latest review when a new review is added
@@ -111,7 +114,7 @@ const EachTopic = () => {
                 <RatingDisplay rating={review.rating || 0} />
                 {role === "Admin" && (
                   <button
-                    onClick={() => handleDeleteReview(review.id)}
+                    onClick={() => handleDeleteReview(review._id)}
                     className="DeleteButton"
                   >
                     Delete Review
