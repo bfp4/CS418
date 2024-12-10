@@ -42,7 +42,6 @@ const EachTopic = () => {
     axios
       .get("http://localhost:5001/getTopic", { params: { id } }) // Pass `id` as query parameter
       .then((res) => {
-        console.log(res);
         setTopic(res.data); // Use the response data to set the topic
       })
       .catch((error) => {
@@ -113,10 +112,9 @@ const EachTopic = () => {
 
       <div>
         <h3>Reviews</h3>
-        {/* Ensure topic.reviews is defined before rendering */}
-        {Array.isArray(topic.reviews) && topic.reviews.length > 0 ? (
+        {reviews.length > 0 ? (
           <ul>
-            {topic.reviews.map((review) => (
+            {reviews.map((review) => (
               <li key={review.id}>
                 <p>{review.text}</p>
                 <RatingDisplay rating={review.rating || 0} />
