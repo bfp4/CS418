@@ -14,6 +14,36 @@ const Signup = () => {
   const [role, setRole] = useState("Student"); // New state for role selection
 
   const handleClick = () => {
+    
+    if (!firstName.trim()) {
+      alert("First Name is required!");
+      return;
+    }
+    if (!lastName.trim()) {
+      alert("Last Name is required!");
+      return;
+    }
+    if (!username.trim()) {
+      alert("Username is required!");
+      return;
+    }
+    if (!email.trim() || !email.includes("@")) {
+      alert("A valid Email is required!");
+      return;
+    }
+    if (!password.trim()) {
+      alert("Password is required!");
+      return;
+    }
+    if (!confirmPassword.trim()) {
+      alert("Confirm Password is required!");
+      return;
+    }
+    if (password !== confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+    
     const signupValues = {
       firstName: firstName,
       lastName: lastName,
