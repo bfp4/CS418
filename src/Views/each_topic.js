@@ -64,19 +64,20 @@ const EachTopic = () => {
   };
 
   const handleAddReview = () => {
-    if (role === "Student" && newReview.trim()) {
-      const newReviewObj = {
-        id: Date.now(),
-        text: newReview,
-        rating: parseInt(newRating, 10) || 0, // Ensure the rating is a number
-      };
-      setTopic((prevTopic) => ({
-        ...prevTopic,
-        reviews: [...prevTopic.reviews, newReviewObj],
-      }));
-      setNewReview(""); // Clear the review input field
-      setNewRating(""); // Clear the rating input field
+    const reviewValues = {
+      user_id: localStorage.getItem("user_id"), 
+      topic_id: id, 
+      rating: newRating, 
+      review: newReview
     }
+    axios
+      .post("http://localhost:5001/createRating", reviewValues) // Pass `id` as query parameter
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.error("Error fetching ratings:", error);
+      });
   };
 
   const handleDeleteTopic = () => {
