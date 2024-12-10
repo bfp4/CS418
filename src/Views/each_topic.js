@@ -19,7 +19,7 @@ const EachTopic = () => {
   const role = localStorage.getItem("role");
 
   const [topic, setTopic] = useState({});
-  const [reviews, setReviews] = useState([])
+  const [reviews, setReviews] = useState([]);
 
   const RatingDisplay = ({ rating }) => {
     const maxRating = 5; // Maximum number of Great Danes
@@ -64,16 +64,16 @@ const EachTopic = () => {
 
   const handleAddReview = () => {
     const reviewValues = {
-      user_id: localStorage.getItem("user_id"), 
-      topic_id: id, 
-      rating: newRating, 
-      review: newReview
-    }
+      user_id: localStorage.getItem("user_id"),
+      topic_id: id,
+      rating: newRating,
+      review: newReview,
+    };
     axios
       .post("http://localhost:5001/createRating", reviewValues) // Pass `id` as query parameter
       .then((res) => {
         console.log(res);
-        window.location.reload()
+        window.location.reload();
       })
       .catch((error) => {
         console.error("Error fetching ratings:", error);
@@ -85,7 +85,7 @@ const EachTopic = () => {
       .delete(`http://localhost:5001/deleteRating/${reviewId}`) // Pass `id` as query parameter
       .then((res) => {
         console.log(res);
-        window.location.reload()
+        window.location.reload();
       })
       .catch((error) => {
         console.error("Error delete ratings:", error);
@@ -126,15 +126,21 @@ const EachTopic = () => {
         ) : (
           <p>No reviews yet.</p>
         )}
-        
+
         {/* Add a review */}
         {role === "Student" && (
           <>
-            <label>Rating:</label><br />     
+            <label>Rating:</label>
+            <br />
             <input
-                type="number"
-                value={newRating}
-                onChange={(e) => setNewRating(e.target.value)}
+              type="number"
+              value={newRating}
+              onChange={(e) => {
+                const value = Math.max(1, Math.min(5, Number(e.target.value))); // Clamps value between 1 and 5
+                setNewRating(value);
+              }}
+              min="1"
+              max="5"
             />
             <textarea
               value={newReview}
