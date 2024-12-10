@@ -173,3 +173,14 @@ app.get('/getRatings', async (req, res) => {
         res.status(500).send(error);
     }
 });
+
+app.delete('/deleteRating/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const ratings = await Rating.findByIdAndDelete(id); // Only find topics with approval set to true
+        res.send(ratings);
+    } catch (error) {
+        console.error('Error deleting:', error);
+        res.status(500).send(error);
+    }
+});
